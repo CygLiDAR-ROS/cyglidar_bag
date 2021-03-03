@@ -23,6 +23,6 @@ $ roslaunch cyglidar_rosbag cyglidar_rosbag.launch
 ```
 2) Terminal 2
 ```bash
-$ cd src/(package directory name)/cyglidar_rosbag/rosbag
+$ cd src/cyglidar_bag/cyglidar_rosbag/rosbag
 $ rosbag play 210303_cyglidar.bag --clock
 ```
