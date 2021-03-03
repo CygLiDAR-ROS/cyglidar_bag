@@ -9,20 +9,20 @@ This repository contains ROSBAG sample data, launch files and the octomap_mappin
 ## Download
 Copy both hector_mapping and octomap_mapping packages to your catkin workspace as follows:
 ```bash
-git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git -b melodic-devel
+$ git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git -b melodic-devel
 ```
 ```bash
-git clone https://github.com/ros/ros_comm.git -b melodic-devel
+$ git clone https://github.com/ros/ros_comm.git -b melodic-devel
 ```
 
 ## Run
-Run Hector_Slam with a recorded ROSBAG file as below:
+Run slam packages with a recorded ROSBAG file as below:
 1) Terminal 1
 ```bash
-roslaunch cyglidar_rosbag cyglidar_rosbag.launch
+$ roslaunch cyglidar_rosbag cyglidar_rosbag.launch
 ```
 2) Terminal 2
 ```bash
-cd src/(package directory name)/cyglidar_rosbag/rosbag
-rosbag play 210303_cyglidar.bag --clock
+$ cd src/(package directory name)/cyglidar_rosbag/rosbag
+$ rosbag play 210303_cyglidar.bag --clock
 ```
