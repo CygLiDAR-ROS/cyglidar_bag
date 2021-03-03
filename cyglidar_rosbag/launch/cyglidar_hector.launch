@@ -1,0 +1,72 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="configuration_basename" default="cyglidar_lds_2d.lua"/>
+  <arg name="odom_frame" default="odom"/>
+  <arg name="base_frame" default="base_footprint"/>
+  <arg name="scan_topic" default="scan_laser"/>
+  <arg name="pub_map_odom_transform" default="true"/>
+  <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
+
+  <!-- Hector mapping -->
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+
+    <!-- Frame names -->
+    <param name="map_frame"  value="map"/>
+    <param name="odom_frame" value="$(arg odom_frame)"/>
+    <param name="base_frame" value="$(arg base_frame)"/>
+
+    <!-- Tf use -->
+    <param name="use_tf_scan_transformation"  value="true"/>
+    <param name="use_tf_pose_start_estimate"  value="true"/>
+    <param name="pub_map_odom_transform"      value="$(arg pub_map_odom_transform)"/>
+    <param name="map_with_known_poses"        value="true"/>
+
+    <!-- Map size / start point -->
+    <param name="map_resolution"        value="0.01"/>
+    <param name="map_size"              value="3000"/>
+    <param name="map_start_x"           value="0.5"/>
+    <param name="map_start_y"           value="0.5"/>
+    <param name="map_multi_res_levels"  value="3"/>
+
+    <!-- Map update parameters -->
+    <param name="update_factor_free"         value="0.4"/>
+    <param name="update_factor_occupied"     value="0.9" />   
+    <param name="map_update_distance_thresh" value="0.1"/>
+    <param name="map_update_angle_thresh"    value="0.06" />
+    <param name="map_pub_period"             value="0.1" />
+    <param name="laser_z_min_value"          value="-0.1" />
+    <param name="laser_z_max_value"          value="0.1" />
+    <param name="laser_min_dist"             value="0.01" />
+    <param name="laser_max_dist"             value="12.0" />
+
+    <!-- Advertising config -->
+    <param name="advertise_map_service"      value="true"/> 
+    <param name="scan_subscriber_queue_size" value="1"/>
+    <param name="scan_topic" value="$(arg scan_topic)"/>
+
+    <param name="pub_map_scanmatch_transform"            value="true"/>
+    <param name="tf_map_scanmatch_transform_frame_name"  value="$(arg tf_map_scanmatch_transform_frame_name)"/>
+  </node>
+
+<!-- kobuki -->
+  <node pkg="tf" type="static_transform_publisher" name="to_scanmatcher"
+    args="0 0 0 0 0 0 1 map scanmatcher_frame 5"/> 
+  <node pkg="tf" type="static_transform_publisher" name="to_odom"
+    args="0 0 0 0 0 0 1 map odom 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_baselink"
+    args="0 0 0 0 0 0 1 base_footprint base_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_laser"
+    args="0.157 0 0 0 0 0 1 base_link laser_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_gyro"
+    args="0 0 0 0 0 0 1 base_link gyro_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_caster_back"
+    args="0 0 0 0 0 0 1 base_link caster_back_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_caster_front"
+    args="0 0 0 0 0 0 1 base_link caster_front_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_cliff_sensor_left"
+    args="0 0 0 0 0 0 1 base_link cliff_sensor_left_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_cliff_sensor_right"
+    args="0 0 0 0 0 0 1 base_link cliff_sensor_right_link 5"/>
+  <node pkg="tf" type="static_transform_publisher" name="to_cliff_sensor_front"
+    args="0 0 0 0 0 0 1 base_link cliff_sensor_front_link 5"/>
+</launch>
