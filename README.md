@@ -7,11 +7,10 @@ This repository contains ROSBAG sample data, launch files and the octomap_mappin
 - ROS Melodic
 
 ## Download
-Copy the following pacakges to your catkin workspace:
+Copy both hector_mapping and octomap_mapping packages to your catkin workspace as follows:
 ```bash
 git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git -b melodic-devel
 ```
 ```bash
 git clone https://github.com/ros/ros_comm.git -b melodic-devel
 ```
-
