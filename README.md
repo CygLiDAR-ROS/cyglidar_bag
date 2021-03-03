@@ -1,5 +1,6 @@
 # cyglidar_rosbag
 cyglidar_rosbag is a ROS package built to see how CygLiDAR works on rviz.
+
 This repository contains launch files and the octomap_mapping package to play the bag files.
 
 ## Prerequisites
@@ -15,7 +16,9 @@ $ git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git -b melodic-d
 $ git clone https://github.com/ros/ros_comm.git -b melodic-devel
 ```
 Then, download ROSBAG sample data from the following page:
+
 https://drive.google.com/file/d/1dN4ll4EzpHoalbpheoFlR-CizD0ZT2RK/view?usp=sharing
+
 The bag file should be moved into **src/cyglidar_bag/cyglidar_rosbag/rosbag** directory.
 
 ## Run
